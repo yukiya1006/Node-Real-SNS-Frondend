@@ -31,10 +31,37 @@ export default function Rightbar({ profile }) {
   }
 
   const ProfileRightbar = () => {
-    return
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    return (
       <>
-        profileRightbarです
+        <h4 className='rightbarTitle'>ユーザー情報</h4>
+        <div className="rightbarInfo">
+          <div className="rightbarItem">
+            <span className="rightbarInfoKey">出身:</span>
+            <span className="rightbarInfoKey">アメリカ</span>
+          </div>
+          <h4 className="rightbarSubTitle">あなたの友達</h4>
+          <div className="rightbarFollowings">
+            <div className="rightbarFollowing">
+              <img src={PUBLIC_FOLDER + "/person/2.jpg"} alt="" className='rightbarFollowingImg'/>
+              <span className="rightbarFollowingName">cloe</span>
+            </div>
+            <div className="rightbarFollowing">
+              <img src={PUBLIC_FOLDER + "/person/3.jpg"} alt="" className='rightbarFollowingImg'/>
+              <span className="rightbarFollowingName">Edword</span>
+            </div>
+            <div className="rightbarFollowing">
+              <img src={PUBLIC_FOLDER + "/person/4.jpg"} alt="" className='rightbarFollowingImg'/>
+              <span className="rightbarFollowingName">Joe</span>
+            </div>
+            <div className="rightbarFollowing">
+              <img src={PUBLIC_FOLDER + "/person/5.jpg"} alt="" className='rightbarFollowingImg'/>
+              <span className="rightbarFollowingName">Lisa</span>
+            </div>
+          </div>
+        </div>
       </>
+    );
   };    
 
   return (

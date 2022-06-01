@@ -3,6 +3,7 @@ import React from 'react'
 import CloseFriend from '../closeFriend/CloseFriend'
 import './Sidebar.css'
 import {Users} from '../../dummyDate';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   return (
@@ -11,7 +12,9 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className='sidebarListItems'>
             <Home className='sidebarIcon'/>
-            <span className='sidebarListItemText'>Home</span>
+            <Link to="/" style={{textDecoration: "none", color: "black"}}>
+              <span className='sidebarListItemText'>Home</span>
+            </Link>
           </li>
           <li className='sidebarListItems'>
             <Search className='sidebarIcon'/>
@@ -31,7 +34,9 @@ export default function Sidebar() {
           </li>
           <li className='sidebarListItems'>
             <Person className='sidebarIcon'/>
-            <span className='sidebarListItemText'>Profile</span>
+            <Link to="/profile/mike" style={{textDecoration: "none", color: "black"}}>
+              <span className='sidebarListItemText'>Profile</span>
+            </Link>
           </li>
           <li className='sidebarListItems'>
             <Settings className='sidebarIcon'/>
