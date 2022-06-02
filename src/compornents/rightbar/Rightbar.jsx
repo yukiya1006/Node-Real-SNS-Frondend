@@ -3,16 +3,16 @@ import './Rightbar.css';
 import {Users} from '../../dummyDate';
 import Online from '../online/Online';
 
-export default function Rightbar({ profile }) {
-
+export default function Rightbar({ user }) {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () => {
     return (
       <>
         <div className="eventContainer">
-          <img src="aseets/star.png" alt="" className='starImg'/>
+          <img src={PUBLIC_FOLDER + "/star.png"} alt="" className='starImg'/>
           <span className='eventText'><b>フォロワー限定</b>イベント開催中！</span>  
         </div>
-        <img src="aseets/event.jpeg" alt="" className='eventImg'/>
+        <img src={ PUBLIC_FOLDER +"/event.jpeg"} alt="" className='eventImg'/>
         <h4 className='rightbarTitle'>オンライン中の友達</h4>
         <ul className="rightbarFriendList">
           { Users.map((user) => (
@@ -67,7 +67,7 @@ export default function Rightbar({ profile }) {
   return (
     <div className="rightbar">
       <div className='rightbarWrapper'>
-        {profile ? <ProfileRightbar/> : <HomeRightbar/>}
+        {user ? <ProfileRightbar/> : <HomeRightbar/>}
       </div>
     </div>
   )

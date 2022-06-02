@@ -1,12 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import Rightbar from '../../compornents/rightbar/Rightbar';
 import Sidebar from '../../compornents/sidebar/Sidebar';
 import Timeline from '../../compornents/timeline/Timeline';
 import Topbar from '../../compornents/topbar/Topbar';
 import './Profile.css';
+import { useParams } from 'react-router-dom';
 
 export default function Profile() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const [user, setUser] = useState({});
+  const username = useParams().username;
+
+  useEffect(() => {
+    const fetchUser = async ()=> {
+      const responce = await axios.get(`/users?username=${username}`);
+      setUser(responce.data);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <>
     <Topbar />
@@ -15,16 +29,16 @@ export default function Profile() {
       <div className="profileRight">
         <div className="profileRightTop">
           <div className="profileCover">
-            <img src={PUBLIC_FOLDER + "/post/3.jpeg"} alt="" className='profileCoverImg'/>
-            <img src={PUBLIC_FOLDER + "/person/1.jpg"} alt="" className='profileUserImg'/>
+            <img src={user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"} alt="" className='profileCoverImg'/>
+            <img src={ user.profilePicture || PUBLIC_FOLDER +  "/person/noAvatar.png"} alt="" className='profileUserImg'/>
           </div>
           <div className="profileInfo">
-            <h4 className='profileInfoName'>Mike</h4>
-            <span className='profileInfoDesc'>トレーナーをしています</span>
+            <h4 className='profileInfoName'>{user.username}</h4>
+            <span className='profileInfoDesc'>{user.desc}</span>
           </div>
         </div>
         <div className="rofileRightBottom">
-          <Timeline />
+          <Timeline username={username}/>
           <Rightbar profile />
         </div>
       </div>
